@@ -1,52 +1,56 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useRef } from 'react';
+import styles from './Home.module.scss';
 
 export default function Home() {
-  const [file, setFile] = useState(null);
-  const [text, setText] = useState('');
-  const [loading, setLoading] = useState(false);
+  const cardsRef = useRef([]);
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(styles.visible);
+          } else {
+            entry.target.classList.remove(styles.visible);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      },
+    );
 
-  const handleUpload = async () => {
-    const formData = new FormData();
-    formData.append('audio', file);
+    cardsRef.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
 
-    try {
-      setLoading(true);
-      const uploadRes = await axios.post('/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+    return () => {
+      cardsRef.current.forEach((card) => {
+        if (card) observer.unobserve(card);
       });
-
-      const transcribeRes = await axios.post('/api/transcribe', {
-        filePath: uploadRes.data.filePath,
-      });
-
-      setText(transcribeRes.data.text);
-    } catch (error) {
-      console.error('Error uploading or transcribing audio:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+  }, []);
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Upload your audio file</h1>
-      <input type="file" accept="audio/*" onChange={handleFileChange} />
-      <button onClick={handleUpload} disabled={!file || loading}>
-        {loading ? 'Transcribing...' : 'Upload and Transcribe'}
-      </button>
-      {text && (
-        <div style={{ marginTop: '20px' }}>
-          <h2>Transcription</h2>
-          <p>{text}</p>
-        </div>
-      )}
+    <div className={styles.container}>
+      <div
+        ref={(el) => (cardsRef.current[0] = el)}
+        className={`${styles.card} ${styles.visible}`}
+      >
+        Card 1
+      </div>
+      <div
+        ref={(el) => (cardsRef.current[1] = el)}
+        className={styles.cardSmall}
+      >
+        Card 2
+      </div>
+      <div
+        ref={(el) => (cardsRef.current[2] = el)}
+        className={styles.cardSmall}
+      >
+        Card 3
+      </div>
     </div>
   );
 }
