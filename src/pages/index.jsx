@@ -1,56 +1,38 @@
-import { useEffect, useRef } from 'react';
-import styles from './Home.module.scss';
+import Card from '@/components/Card';
+import ResponsiveContainer from '@/components/ResponsiveContainer';
+import axios from 'axios';
 
-export default function Home() {
-  const cardsRef = useRef([]);
+export async function getServerSideProps() {
+  try {
+    const res = await axios.get('http://localhost:3000/api/products');
+    const productsList = res.data;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          } else {
-            entry.target.classList.remove(styles.visible);
-          }
-        });
+    return {
+      props: {
+        productsList,
       },
-      {
-        threshold: 0.5,
-      },
-    );
-
-    cardsRef.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      cardsRef.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
     };
-  }, []);
-
-  return (
-    <div className={styles.container}>
-      <div
-        ref={(el) => (cardsRef.current[0] = el)}
-        className={`${styles.card} ${styles.visible}`}
-      >
-        Card 1
-      </div>
-      <div
-        ref={(el) => (cardsRef.current[1] = el)}
-        className={styles.cardSmall}
-      >
-        Card 2
-      </div>
-      <div
-        ref={(el) => (cardsRef.current[2] = el)}
-        className={styles.cardSmall}
-      >
-        Card 3
-      </div>
-    </div>
-  );
+  } catch (e) {
+    console.error('Erro ao buscar produtos:', e);
+    return {
+      props: {
+        productsList: [],
+      },
+    };
+  }
 }
+
+const Home = ({ productsList }) => {
+  return (
+    <ResponsiveContainer>
+      {productsList.length > 0 ? (
+        (console.log(productsList.length),
+        productsList.map((product) => <Card key={product._id} {...product} />))
+      ) : (
+        <p>Não há produtos disponíveis no momento.</p>
+      )}
+    </ResponsiveContainer>
+  );
+};
+
+export default Home;
