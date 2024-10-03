@@ -7,20 +7,17 @@
 @media (min-width: 1200px) {
   .container {
     max-width: 1200px;
-    background-color: #f0f0f0;
   }
 }
 
 @media (min-width: 900px) and (max-width: 1199px) {
   .container {
     max-width: 900px;
-    background-color: #e0e0e0;
   }
 }
 
 @media (max-width: 899px) {
   .container {
     max-width: 100%;
-    background-color: #d0d0d0;
   }
 }
