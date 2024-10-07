@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import styles from './index.module.scss';
 import Image from 'next/image';
+import Logo from '../../public/home.svg';
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -13,14 +14,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Logo */}
         <div className={styles.logo}>
           <Link href="/">
-            <Image src="/logo.png" alt="Logo" width={150} height={50} />
+            <Image src={Logo} alt="Logo" width={40} height={40} />
           </Link>
         </div>
 
-        {/* Menu for desktop */}
         <nav className={styles.nav}>
           <ul>
             <li>
@@ -38,14 +37,12 @@ const Header = () => {
           </ul>
         </nav>
 
-        {/* Hamburger menu button (visible only on mobile/tablet) */}
         <div className={styles.hamburger} onClick={toggleMobileMenu}>
           <span className={isMobileMenuOpen ? styles.open : ''}></span>
           <span className={isMobileMenuOpen ? styles.open : ''}></span>
           <span className={isMobileMenuOpen ? styles.open : ''}></span>
         </div>
 
-        {/* Mobile Menu */}
         <div
           className={`${styles.mobileMenu} ${
             isMobileMenuOpen ? styles.open : ''

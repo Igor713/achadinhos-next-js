@@ -1,4 +1,3 @@
-// Container principal do Header
 .header {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -17,14 +16,12 @@
     height: 70px;
   }
 
-  // Logo
   .logo {
     img {
       display: block;
     }
   }
 
-  // Menu de navegação para desktop
   .nav {
     ul {
       display: flex;
@@ -41,19 +38,18 @@
           transition: color 0.3s;
 
           &:hover {
-            color: #0070f3;
+            color: #ee913f;
+            transition: color 0.3s;
           }
         }
       }
     }
 
-    // Escondemos o menu no mobile
     @media (max-width: 768px) {
       display: none;
     }
   }
 
-  // Botão de hamburger para mobile/tablet
   .hamburger {
     display: none;
     cursor: pointer;
@@ -73,16 +69,17 @@
       &:nth-child(2) {
         margin: 6px 0;
       }
-    }
 
-    &.open span:nth-child(1) {
-      transform: translateY(10px) rotate(45deg);
-    }
-    &.open span:nth-child(2) {
-      opacity: 0;
-    }
-    &.open span:nth-child(3) {
-      transform: translateY(-10px) rotate(-45deg);
+      &.open:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+      }
+      &.open:nth-child(2) {
+        opacity: 0;
+        margin: 0;
+      }
+      &.open:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+      }
     }
 
     @media (max-width: 768px) {
@@ -90,17 +87,16 @@
     }
   }
 
-  // Menu mobile
   .mobileMenu {
     position: absolute;
-    top: 70px;
+    transform: translateY(-170px);
     right: 0;
     width: 100%;
     background-color: #fff;
     display: none;
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: transform 0.5s;
 
     ul {
       display: flex;
@@ -110,15 +106,17 @@
 
       li {
         padding: 10px 20px;
-        border-bottom: 1px solid #eaeaea;
+        // border-bottom: 1px solid #eaeaea;
 
         a {
           text-decoration: none;
           color: #333;
           font-weight: bold;
+          transition: color 0.3s;
 
           &:hover {
-            color: #0070f3;
+            transition: color 0.3s;
+            color: #ee913f;
           }
         }
       }
@@ -126,6 +124,8 @@
 
     &.open {
       display: flex;
+      transition: transform 0.5s;
+      transform: translateY(128px);
     }
   }
 }

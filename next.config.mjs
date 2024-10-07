@@ -4,9 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'www.ciflimpadores.com.br',
+        hostname: '**',
         port: '',
-        pathname: '/images/**',
+        pathname: '/**',
       },
     ],
   },

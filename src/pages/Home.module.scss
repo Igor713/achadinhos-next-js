@@ -1,13 +1,24 @@
 .searchInput {
+  margin-top: 80px;
   margin-bottom: 30px;
-  width: 40%;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  .searchTitle {
+    font-weight: bold;
+    color: #333;
+    width: 50%;
+    font-size: 26px;
+  }
+
   input {
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #fff;
     padding: 10px 20px;
-    width: 100%;
-    margin-top: 80px;
+    width: 50%;
   }
 }
 

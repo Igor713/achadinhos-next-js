@@ -9,9 +9,14 @@ const Card = ({ name, imageLink, description, tagName, ecommerce }) => {
     Casa: '#bc6c25',
     Limpeza: '#ff686b',
     Cozinha: '#ff69eb',
+    Pet_food: '#588157',
   };
 
   const tagColor = tagColors[tagName] || 'gray';
+
+  if (tagName.includes('_')) {
+    tagName = tagName.replace('_', ' ');
+  }
 
   return (
     <Link
@@ -36,7 +41,7 @@ const Card = ({ name, imageLink, description, tagName, ecommerce }) => {
           <h3>{name}</h3>
           <p>
             {description.length > 100
-              ? `${description.slice(0, 100)}...`
+              ? `${description.slice(0, 70)}...`
               : description}
           </p>
           <div className={styles.cardFooter}>
