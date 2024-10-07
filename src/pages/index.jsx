@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Card from '@/components/Card';
+import Header from '@/components/Header';
 import ResponsiveContainer from '@/components/ResponsiveContainer';
 import axios from 'axios';
 
@@ -25,16 +27,41 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ productsList }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredProducts = searchTerm
+    ? productsList.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+      )
+    : productsList;
+
   return (
-    <ResponsiveContainer>
-      <div className={styles.lobby}>
-        {productsList.length > 0 ? (
-          productsList.map((product) => <Card key={product._id} {...product} />)
-        ) : (
-          <p>Não há produtos disponíveis no momento.</p>
-        )}
-      </div>
-    </ResponsiveContainer>
+    <>
+      <Header />
+      <ResponsiveContainer>
+        <div className={styles.searchInput}>
+          <input
+            type="text"
+            placeholder="Buscar produtos"
+            value={searchTerm}
+            onChange={handleSearchChange}
+          />
+        </div>
+        <div className={styles.lobby}>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Card key={product._id} {...product} />
+            ))
+          ) : (
+            <p>Não há produtos disponíveis no momento.</p>
+          )}
+        </div>
+      </ResponsiveContainer>
+    </>
   );
 };
 
