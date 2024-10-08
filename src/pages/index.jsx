@@ -21,9 +21,12 @@ export async function getServerSideProps() {
     const res = await axios.get('http://localhost:3000/api/products');
     const productsList = res.data;
 
+    const mostClickedProducts = productsList.slice(0, 5);
+
     return {
       props: {
         productsList,
+        mostClickedProducts,
       },
     };
   } catch (e) {
@@ -36,7 +39,7 @@ export async function getServerSideProps() {
   }
 }
 
-const Home = ({ productsList }) => {
+const Home = ({ productsList, mostClickedProducts }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (e) => {
@@ -72,8 +75,10 @@ const Home = ({ productsList }) => {
           )}
         </div>
 
-        <div>
-          <h1>Confira os produtos mais clicados</h1>
+        <div className={styles.carousel}>
+          <h1 className={styles.carouselTitle}>
+            Confira os produtos mais clicados
+          </h1>
           <Swiper
             slidesPerView={4}
             spaceBetween={20}
@@ -89,27 +94,28 @@ const Home = ({ productsList }) => {
             }}
             navigation={true}
             modules={[Autoplay, Pagination, Navigation]}
-            className="carousel"
+            className="mostClickedProductsCarousel"
             breakpoints={{
-              // Quando a largura da viewport for >= 320px (mobile)
-              320: {
-                slidesPerView: 2, // 1 slide visível
-                spaceBetween: 10, // Espaço entre os slides
+              1194: {
+                slidesPerView: 4, // 4 slides visíveis em telas com largura >= 1194px
+                spaceBetween: 30,
               },
-              // Quando a largura da viewport for >= 768px (tablet)
+              1024: {
+                slidesPerView: 3, // 3 slides visíveis em telas >= 1024px e < 1194px
+                spaceBetween: 30,
+              },
               768: {
-                slidesPerView: 2, // 2 slides visíveis
+                slidesPerView: 2, // 2 slides visíveis em telas >= 768px e < 1024px
                 spaceBetween: 20,
               },
-              // Quando a largura da viewport for >= 1024px (desktop)
-              1024: {
-                slidesPerView: 3, // 3 slides visíveis
-                spaceBetween: 30,
+              320: {
+                slidesPerView: 2, // 2 slides visíveis em telas >= 768px e < 1024px
+                spaceBetween: 20,
               },
             }}
           >
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
+            {mostClickedProducts.length > 0 ? (
+              mostClickedProducts.map((product) => (
                 <SwiperSlide key={product._id}>
                   <Card key={product._id} {...product} />
                 </SwiperSlide>
