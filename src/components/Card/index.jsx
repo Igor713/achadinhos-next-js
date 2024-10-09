@@ -1,15 +1,26 @@
 import React from 'react';
+import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from './index.module.scss';
 
-const Card = ({ name, imageLink, description, tagName, ecommerce }) => {
+const Card = ({ _id, name, imageLink, description, tagName, ecommerce }) => {
+  const handleProductClick = async () => {
+    try {
+      await axios.post('/api/clickProduct', { productId: _id });
+    } catch (e) {
+      console.log('Erro ao registrar clique', e);
+    }
+  };
+
   const tagColors = {
     Casa: '#bc6c25',
     Limpeza: '#ff686b',
     Cozinha: '#ff69eb',
     Pet_food: '#588157',
+    Saúde: '#219ebc',
+    Bebida: '5e548e',
   };
 
   const tagColor = tagColors[tagName] || 'gray';
@@ -23,6 +34,7 @@ const Card = ({ name, imageLink, description, tagName, ecommerce }) => {
       className={styles.cardLink}
       href={'https://google.com.br'}
       target="_blank"
+      onClick={handleProductClick}
     >
       <div className={styles.card}>
         <div className={styles.tagName} style={{ backgroundColor: tagColor }}>
@@ -44,10 +56,10 @@ const Card = ({ name, imageLink, description, tagName, ecommerce }) => {
               ? `${description.slice(0, 70)}...`
               : description}
           </p>
-          <div className={styles.cardFooter}>
-            <p className={styles.tagEcommerce}>{ecommerce}</p>
-            <button className={styles.linkButton}>Clique e confira</button>
-          </div>
+        </div>
+        <div className={styles.cardFooter}>
+          <p className={styles.tagEcommerce}>{ecommerce}</p>
+          <button className={styles.linkButton}>Confira</button>
         </div>
       </div>
     </Link>

@@ -21,7 +21,9 @@ export async function getServerSideProps() {
     const res = await axios.get('http://localhost:3000/api/products');
     const productsList = res.data;
 
-    const mostClickedProducts = productsList.slice(0, 5);
+    const mostClickedProducts = productsList
+      .sort((a, b) => b.clicks - a.clicks)
+      .slice(0, 5);
 
     return {
       props: {
@@ -97,20 +99,20 @@ const Home = ({ productsList, mostClickedProducts }) => {
             className="mostClickedProductsCarousel"
             breakpoints={{
               1194: {
-                slidesPerView: 4, // 4 slides visíveis em telas com largura >= 1194px
+                slidesPerView: 4,
                 spaceBetween: 30,
               },
               1024: {
-                slidesPerView: 3, // 3 slides visíveis em telas >= 1024px e < 1194px
+                slidesPerView: 3,
                 spaceBetween: 30,
               },
               768: {
-                slidesPerView: 2, // 2 slides visíveis em telas >= 768px e < 1024px
-                spaceBetween: 20,
+                slidesPerView: 2,
+                spaceBetween: 15,
               },
               320: {
-                slidesPerView: 2, // 2 slides visíveis em telas >= 768px e < 1024px
-                spaceBetween: 20,
+                slidesPerView: 2,
+                spaceBetween: 15,
               },
             }}
           >

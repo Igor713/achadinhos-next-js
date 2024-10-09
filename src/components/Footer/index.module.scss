@@ -34,6 +34,10 @@
 }
 
 @media (max-width: 768px) {
+  .containerMenu {
+    align-items: baseline !important;
+    flex-direction: column !important;
+  }
   .footer .container {
     align-items: center;
   }
@@ -48,7 +52,19 @@
     font-size: 1.2rem;
   }
 
-  .footer .menu li a {
-    font-size: 0.9rem;
+  .footer {
+    .logo {
+      margin-bottom: 20px;
+    }
+    .menu {
+      margin: 0;
+      li {
+        a {
+          font-size: 0.9rem;
+          padding: 0 !important;
+          margin-right: 15px;
+        }
+      }
+    }
   }
 }

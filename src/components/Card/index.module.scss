@@ -2,7 +2,6 @@
   text-decoration: none;
   .card {
     cursor: pointer;
-    display: block;
     position: relative;
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -10,6 +9,9 @@
     background-color: #fff;
     overflow: hidden;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &:hover {
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
@@ -44,7 +46,7 @@
     }
 
     .cardContent {
-      padding: 16px;
+      padding: 0 16px;
       h3 {
         margin: 0 0 10px;
         font-size: 18px;
@@ -55,16 +57,91 @@
       p {
         font-size: 14px;
         color: #777;
-        margin-bottom: 15px;
+        margin: 10px 0;
+      }
+    }
+    .cardFooter {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      margin-bottom: 16px;
+
+      .tagEcommerce {
+        font-size: 14px;
+        font-weight: 600;
+        color: #555;
+        margin: 0;
       }
 
+      .linkButton {
+        cursor: pointer;
+        padding: 8px 14px;
+        border-radius: 10px;
+        border: 1px solid #ee913f;
+        background-color: white;
+        color: #ee913f;
+        font-weight: bold;
+        transition: all 0.5s;
+
+        &:hover {
+          border: 1px solid #ee913f;
+          background-color: #ee7c18;
+          color: #ddd;
+          transition: all 0.5s;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cardLink {
+    text-decoration: none;
+    .card {
+      .tagName {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        padding: 4px 10px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 10px;
+        border-radius: 4px;
+        z-index: 1;
+        text-transform: uppercase;
+      }
+
+      .cardImageWrapper {
+        .cardImage {
+          height: 150px;
+        }
+      }
+
+      .cardContent {
+        padding: 14px;
+        h3 {
+          margin: 0 0 10px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #333;
+        }
+
+        p {
+          font-size: 12px;
+          color: #777;
+          margin: 10px 0;
+        }
+      }
       .cardFooter {
         display: flex;
         align-items: center;
         justify-content: space-between;
+        padding: 0 16px;
+        margin-bottom: 16px;
 
         .tagEcommerce {
-          font-size: 14px;
+          font-size: 12px;
           font-weight: 600;
           color: #555;
           margin: 0;
@@ -72,7 +149,7 @@
 
         .linkButton {
           cursor: pointer;
-          padding: 8px 14px;
+          padding: 6px 12px;
           border-radius: 10px;
           border: 1px solid #ee913f;
           background-color: white;
