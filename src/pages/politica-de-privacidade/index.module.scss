@@ -1,0 +1,32 @@
+.privacyPolicy {
+  margin-top: 80px;
+  h2,
+  h3 {
+    color: #444;
+  }
+
+  p {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+
+  a {
+    color: #444;
+    text-decoration: underline;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  ul {
+    margin-left: 20px;
+    list-style-type: disc;
+
+    li {
+      color: #444;
+      margin-bottom: 0.5em;
+    }
+  }
+}

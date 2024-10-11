@@ -17,16 +17,13 @@ const Footer = () => {
           </div>
           <ul className={styles.menu}>
             <li>
-              <Link href="/">Home</Link>
+              <Link href="/politica-de-privacidade">Política Privacidade</Link>
             </li>
             <li>
-              <Link href="/about">About</Link>
+              <Link href="/termos-e-condicoes">Termos e condições</Link>
             </li>
             <li>
-              <Link href="/services">Services</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact</Link>
+              <Link href="/sobre-nos">Sobre nós</Link>
             </li>
           </ul>
         </div>

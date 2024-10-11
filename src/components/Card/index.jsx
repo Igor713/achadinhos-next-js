@@ -15,12 +15,14 @@ const Card = ({ _id, name, imageLink, description, tagName, ecommerce }) => {
   };
 
   const tagColors = {
-    Casa: '#bc6c25',
-    Limpeza: '#ff686b',
-    Cozinha: '#ff69eb',
-    Pet_food: '#588157',
-    Saúde: '#219ebc',
-    Bebida: '5e548e',
+    Casa: '#D2691E',
+    Limpeza: '#48C9B0',
+    Cozinha: '#F39C12',
+    Pet_food: '#8E44AD',
+    Saúde: '#2ECC71',
+    Bebida: '#2980B9',
+    Moda: '#E74C3C',
+    Tec: '#3498DB',
   };
 
   const tagColor = tagColors[tagName] || 'gray';

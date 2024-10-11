@@ -48,11 +48,13 @@ const Home = ({ productsList, mostClickedProducts }) => {
     setSearchTerm(e.target.value);
   };
 
-  const filteredProducts = searchTerm
-    ? productsList.filter((product) =>
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
-    : productsList;
+  const filteredProducts = productsList.filter((product) => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      product.name.toLowerCase().includes(searchLower) ||
+      product.tagName.toLowerCase().includes(searchLower)
+    );
+  });
 
   return (
     <>
