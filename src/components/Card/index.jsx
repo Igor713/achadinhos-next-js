@@ -5,7 +5,15 @@ import Link from 'next/link';
 
 import styles from './index.module.scss';
 
-const Card = ({ _id, name, imageLink, description, tagName, ecommerce }) => {
+const Card = ({
+  _id,
+  name,
+  imageLink,
+  description,
+  tagName,
+  ecommerce,
+  productLink,
+}) => {
   const handleProductClick = async () => {
     try {
       await axios.post('/api/clickProduct', { productId: _id });
@@ -34,7 +42,7 @@ const Card = ({ _id, name, imageLink, description, tagName, ecommerce }) => {
   return (
     <Link
       className={styles.cardLink}
-      href={'https://google.com.br'}
+      href={productLink}
       target="_blank"
       onClick={handleProductClick}
     >

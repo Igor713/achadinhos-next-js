@@ -25,6 +25,9 @@ const Footer = () => {
             <li>
               <Link href="/sobre-nos">Sobre nós</Link>
             </li>
+            <li>
+              <Link href="mailto:suportepagina10@gmail.com">Contato</Link>
+            </li>
           </ul>
         </div>
       </ResponsiveContainer>

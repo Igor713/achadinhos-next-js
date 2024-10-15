@@ -25,16 +25,10 @@ const Header = () => {
           <nav className={styles.nav}>
             <ul>
               <li>
-                <Link href="/">Home</Link>
+                <Link href="/sobre-nos">Sobre nós</Link>
               </li>
               <li>
-                <Link href="/about">About</Link>
-              </li>
-              <li>
-                <Link href="/services">Services</Link>
-              </li>
-              <li>
-                <Link href="/contact">Contact</Link>
+                <Link href="mailto:suportepagina10@gmail.com">Contato</Link>
               </li>
             </ul>
           </nav>

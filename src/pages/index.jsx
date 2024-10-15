@@ -58,79 +58,75 @@ const Home = ({ productsList, mostClickedProducts }) => {
 
   return (
     <>
-      <Header />
-      <ResponsiveContainer>
-        <div className={styles.searchInput}>
-          <div className={styles.searchTitle}>Procure produtos</div>
-          <input
-            type="text"
-            placeholder="Buscar produtos"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <div className={styles.lobby}>
-          {filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
-              <Card key={product._id} {...product} />
+      <div className={styles.searchInput}>
+        <div className={styles.searchTitle}>Procure produtos</div>
+        <input
+          type="text"
+          placeholder="Buscar produtos"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+      </div>
+      <div className={styles.lobby}>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <Card key={product._id} {...product} />
+          ))
+        ) : (
+          <p>Não há produtos disponíveis no momento.</p>
+        )}
+      </div>
+
+      <div className={styles.carousel}>
+        <h1 className={styles.carouselTitle}>
+          Confira os produtos mais clicados
+        </h1>
+        <Swiper
+          slidesPerView={4}
+          spaceBetween={20}
+          centeredSlides={false}
+          loop={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mostClickedProductsCarousel"
+          breakpoints={{
+            1194: {
+              slidesPerView: 4,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+            },
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+            },
+          }}
+        >
+          {mostClickedProducts.length > 0 ? (
+            mostClickedProducts.map((product) => (
+              <SwiperSlide key={product._id}>
+                <Card key={product._id} {...product} />
+              </SwiperSlide>
             ))
           ) : (
             <p>Não há produtos disponíveis no momento.</p>
           )}
-        </div>
-
-        <div className={styles.carousel}>
-          <h1 className={styles.carouselTitle}>
-            Confira os produtos mais clicados
-          </h1>
-          <Swiper
-            slidesPerView={4}
-            spaceBetween={20}
-            centeredSlides={false}
-            loop={true}
-            autoplay={{
-              delay: 2500,
-              disableOnInteraction: false,
-              pauseOnMouseEnter: true,
-            }}
-            pagination={{
-              clickable: true,
-            }}
-            navigation={true}
-            modules={[Autoplay, Pagination, Navigation]}
-            className="mostClickedProductsCarousel"
-            breakpoints={{
-              1194: {
-                slidesPerView: 4,
-                spaceBetween: 30,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 30,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 15,
-              },
-              320: {
-                slidesPerView: 2,
-                spaceBetween: 15,
-              },
-            }}
-          >
-            {mostClickedProducts.length > 0 ? (
-              mostClickedProducts.map((product) => (
-                <SwiperSlide key={product._id}>
-                  <Card key={product._id} {...product} />
-                </SwiperSlide>
-              ))
-            ) : (
-              <p>Não há produtos disponíveis no momento.</p>
-            )}
-          </Swiper>
-        </div>
-      </ResponsiveContainer>
-      <Footer />
+        </Swiper>
+      </div>
     </>
   );
 };

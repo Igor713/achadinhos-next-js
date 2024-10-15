@@ -1,0 +1,32 @@
+.aboutUs {
+  margin-top: 80px;
+  h2,
+  h3 {
+    color: #444;
+  }
+
+  p,
+  li {
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+
+  a {
+    color: #444;
+    text-decoration: underline;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  ol {
+    margin-left: 20px;
+    list-style-type: decimal;
+
+    li {
+      margin-bottom: 0.5em;
+    }
+  }
+}
