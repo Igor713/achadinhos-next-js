@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import Card from '@/components/Card';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import ResponsiveContainer from '@/components/ResponsiveContainer';
 import axios from 'axios';
 
-import styles from './Home.module.scss';
+import styles from '../styles/Home.module.scss';
 
 // Import Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';

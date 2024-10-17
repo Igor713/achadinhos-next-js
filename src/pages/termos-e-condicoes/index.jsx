@@ -1,7 +1,3 @@
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import ResponsiveContainer from '@/components/ResponsiveContainer';
-
 import styles from './index.module.scss';
 
 export default function TermsAndConditions() {
