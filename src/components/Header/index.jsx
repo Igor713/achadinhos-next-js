@@ -28,7 +28,7 @@ const Header = () => {
                 <Link href="/sobre-nos">Sobre nós</Link>
               </li>
               <li>
-                <Link href="mailto:suportepagina10@gmail.com">Contato</Link>
+                <Link href="/contato">Contato</Link>
               </li>
             </ul>
           </nav>
@@ -46,23 +46,13 @@ const Header = () => {
           >
             <ul>
               <li>
-                <Link href="/" onClick={toggleMobileMenu}>
+                <Link href="/sobre-nos" onClick={toggleMobileMenu}>
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" onClick={toggleMobileMenu}>
+                <Link href="/contato" onClick={toggleMobileMenu}>
                   About
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" onClick={toggleMobileMenu}>
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" onClick={toggleMobileMenu}>
-                  Contact
                 </Link>
               </li>
             </ul>

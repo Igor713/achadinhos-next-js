@@ -19,7 +19,6 @@ export default async function handler(req, res) {
 
   try {
     const messageResponse = await client.sendAsync(message);
-    console.log(messageResponse);
   } catch (e) {
     console.log(e);
   }
