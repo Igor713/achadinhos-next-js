@@ -26,7 +26,7 @@ const Footer = () => {
               <Link href="/sobre-nos">Sobre nós</Link>
             </li>
             <li>
-              <Link href="mailto:suportepagina10@gmail.com">Contato</Link>
+              <Link href="/contato">Contato</Link>
             </li>
           </ul>
         </div>
