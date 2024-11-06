@@ -15,7 +15,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 export async function getServerSideProps() {
   try {
-    const res = await axios.get('http://localhost:3000/api/products');
+    const res = await axios.get('/api/products');
     const productsList = res.data;
 
     const mostClickedProducts = productsList
